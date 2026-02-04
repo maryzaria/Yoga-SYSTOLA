@@ -5,3 +5,7 @@ requests==2.32.3
 icalendar==5.0.12
 APScheduler==3.10.4
 python-dotenv==1.0.1
+gunicorn==22.0.0
+uvicorn==0.30.6
+whitenoise==6.7.0
+dj-database-url==2.2.0

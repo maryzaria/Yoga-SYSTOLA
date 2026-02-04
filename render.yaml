@@ -1,0 +1,24 @@
+databases:
+  - name: systola-db
+    plan: free
+
+services:
+  - type: web
+    name: systola-web
+    env: python
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "python -m gunicorn systola.asgi:application -k uvicorn.workers.UvicornWorker"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: systola-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: "systola-web.onrender.com"
+      - key: CSRF_TRUSTED_ORIGINS
+        value: "https://systola-web.onrender.com"
