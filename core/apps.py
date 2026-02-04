@@ -14,7 +14,10 @@ class CoreConfig(AppConfig):
             return
 
         from .setup_admin import ensure_admin_password
+        from .bootstrap import bootstrap_render
         from .scheduler import start_scheduler
 
         ensure_admin_password()
+        if os.getenv("AUTO_BOOTSTRAP", "false").lower() == "true":
+            bootstrap_render()
         start_scheduler()

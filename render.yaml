@@ -24,3 +24,5 @@ services:
         value: "https://systola-web.onrender.com"
       - key: SITE_DOMAIN
         value: "systola-web.onrender.com"
+      - key: AUTO_BOOTSTRAP
+        value: "true"
