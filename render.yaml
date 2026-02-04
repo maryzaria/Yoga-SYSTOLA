@@ -22,3 +22,5 @@ services:
         value: "systola-web.onrender.com"
       - key: CSRF_TRUSTED_ORIGINS
         value: "https://systola-web.onrender.com"
+      - key: SITE_DOMAIN
+        value: "systola-web.onrender.com"
