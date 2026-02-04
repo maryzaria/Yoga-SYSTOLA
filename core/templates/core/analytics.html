@@ -1,0 +1,84 @@
+{% extends "core/base.html" %}
+
+{% block title %}SYSTOLA • Аналитика{% endblock %}
+
+{% block content %}
+  <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+    <div class="card">
+      <h2>Всего кликов</h2>
+      <p style="font-size: 32px; margin: 8px 0 0;">{{ total_clicks }}</p>
+    </div>
+    <div class="card">
+      <h2>Уникальных участников</h2>
+      <p style="font-size: 32px; margin: 8px 0 0;">{{ unique_users }}</p>
+    </div>
+    <div class="card">
+      <h2>Пройдено тренировок</h2>
+      <p style="font-size: 32px; margin: 8px 0 0;">{{ trainings_total }}</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 24px;">
+    <h2>Время входов (по часам)</h2>
+    <div style="display: grid; grid-template-columns: repeat(12, minmax(60px, 1fr)); gap: 12px;">
+      {% for item in clicks_by_hour %}
+        <div style="display: grid; gap: 8px; align-items: end;">
+          <div
+            style="
+              height: {{ item.total|add:1 }}0px;
+              background: linear-gradient(180deg, #2f6f57, #e9c46a);
+              border-radius: 10px;
+              min-height: 12px;
+            "
+            title="{{ item.total }}"
+          ></div>
+          <div style="text-align: center; font-size: 12px;">{{ item.hour }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-top: 24px;">
+    <div class="card">
+      <h2>Клики по тренировкам</h2>
+      <ul>
+        {% for item in clicks_by_event %}
+          <li>
+            {{ item.event__title|default:"Без названия" }} — {{ item.total }}
+          </li>
+        {% empty %}
+          <li>Пока нет данных.</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Распределение по пользователям</h2>
+      <ul>
+        {% for item in clicks_by_user %}
+          <li>
+            {{ item.user__email|default:"Без email" }} — {{ item.total }}
+          </li>
+        {% empty %}
+          <li>Пока нет данных.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 24px;">
+    <h2>Последние клики</h2>
+    <ul>
+      {% for click in recent_clicks %}
+        <li>
+          {{ click.clicked_at|date:"d.m.Y H:i" }} —
+          {{ click.user.email }}
+          {% if click.event %}
+            ({{ click.event.title|default:"Тренировка" }})
+          {% endif %}
+        </li>
+      {% empty %}
+        <li>Пока нет данных.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

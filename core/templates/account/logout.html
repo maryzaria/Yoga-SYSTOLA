@@ -1,0 +1,13 @@
+{% extends "account/base.html" %}
+
+{% block title %}SYSTOLA • Выход{% endblock %}
+
+{% block inner %}
+  <h1>Выход из SYSTOLA</h1>
+  <p>Вы уверены, что хотите выйти?</p>
+  <form method="post" action="/accounts/logout/">
+    {% csrf_token %}
+    <button class="button secondary" type="submit">Выйти</button>
+    <a class="button" href="/">Вернуться</a>
+  </form>
+{% endblock %}

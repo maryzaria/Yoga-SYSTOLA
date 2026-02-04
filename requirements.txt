@@ -1,0 +1,7 @@
+django==4.2.5
+psycopg2-binary==2.9.9
+django-allauth==0.61.1
+requests==2.32.3
+icalendar==5.0.12
+APScheduler==3.10.4
+python-dotenv==1.0.1

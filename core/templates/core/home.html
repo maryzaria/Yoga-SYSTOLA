@@ -1,0 +1,216 @@
+{% extends "core/base.html" %}
+
+{% block title %}SYSTOLA • Приветствие{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="hero-content">
+      <p class="eyebrow">SYSTOLA</p>
+      <h1>Йога-сообщество, где практика становится теплом</h1>
+      <p class="lead">
+        Стабильность в теле, ясность в голове, поддержка рядом. Мы создаем
+        пространство, в котором дыхание слышно, а прогресс мягкий и устойчивый.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="/accounts/login/">Войти через Google</a>
+        <a class="button secondary" href="/schedule/">Смотреть расписание</a>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <div class="hero-card" data-reveal>
+        <h3>Принципы</h3>
+        <ul>
+          <li>Без давления и соревнования</li>
+          <li>Честный контакт с телом</li>
+          <li>Ритм, который поддерживает</li>
+          <li>Сообщество вместо одиночества</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-text">
+    <h2>Вдохновение в каждом движении</h2>
+    <p>
+      Мягкие линии, свет и тишина — фон нашей практики.
+    </p>
+  </section>
+
+  <section class="flow">
+    <div class="flow-card" data-reveal>
+      <h2>Как это устроено</h2>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+        <div class="card">
+          <h3>1. Присоединяйтесь</h3>
+          <p>Авторизация через Google и доступ к личному кабинету.</p>
+        </div>
+        <div class="card">
+          <h3>2. Выберите слот</h3>
+          <p>Расписание обновляется каждый час из календаря.</p>
+        </div>
+        <div class="card">
+          <h3>3. Подключитесь</h3>
+          <p>Один клик — и вы в Zoom вместе с группой.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contacts" data-reveal>
+    <div class="card">
+      <h2>Контакты сообщества</h2>
+      <div class="contact-list">
+        <a class="contact-item" href="https://www.instagram.com/yoga.systola?igsh=ejBkZWIyYTZma3Nk" target="_blank" rel="noreferrer">
+          <span class="icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm10 2H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.5-.6a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"/>
+            </svg>
+          </span>
+          <span>Instagram</span>
+        </a>
+        <a class="contact-item" href="https://youtube.com/@yogasystola?si=hOYr0fHl_UQ8lSg9" target="_blank" rel="noreferrer">
+          <span class="icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.9 4.6 12 4.6 12 4.6s-5.9 0-7.5.5A3 3 0 0 0 2.4 7.2 31.6 31.6 0 0 0 2 12a31.6 31.6 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.6.5 7.5.5 7.5.5s5.9 0 7.5-.5a3 3 0 0 0 2.1-2.1 31.6 31.6 0 0 0 .4-4.8 31.6 31.6 0 0 0-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/>
+            </svg>
+          </span>
+          <span>YouTube</span>
+        </a>
+        <a class="contact-item" href="https://t.me/YogaSystola_Bot" target="_blank" rel="noreferrer">
+          <span class="icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21.8 4.2a1 1 0 0 0-1-.2L2.7 10.7a1 1 0 0 0 .1 1.9l4.5 1.6 1.7 5.5a1 1 0 0 0 1.7.4l2.7-2.7 4.8 3.5a1 1 0 0 0 1.5-.6l3.3-14a1 1 0 0 0-.3-1.1zM8.4 13.3l9.3-6.1-7.2 7.3-.3 3.4-1.3-4.2-3.7-1.3 3.2-1.1z"/>
+            </svg>
+          </span>
+          <span>Telegram Bot</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 12px;
+      color: #7a6f63;
+      margin-bottom: 12px;
+    }
+
+    .lead {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .hero-panel {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 28px;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      max-width: 360px;
+    }
+
+    .gallery-text {
+      margin-top: 56px;
+    }
+
+    .flow {
+      margin-top: 56px;
+    }
+
+    .flow-card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 32px;
+      border-radius: 24px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .contacts {
+      margin-top: 56px;
+    }
+
+    .contact-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 16px;
+      text-decoration: none;
+      color: inherit;
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1);
+    }
+
+    .icon {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #f0f3f8;
+    }
+
+    .icon svg {
+      width: 18px;
+      height: 18px;
+      fill: #2b6cb0;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .reveal {
+      opacity: 1;
+    }
+  </style>
+
+  <script>
+    const revealItems = document.querySelectorAll("[data-reveal]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("reveal");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+  </script>
+{% endblock %}

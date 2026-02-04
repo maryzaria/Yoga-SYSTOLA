@@ -1,0 +1,61 @@
+{% extends "core/base.html" %}
+
+{% block title %}SYSTOLA • Расписание{% endblock %}
+
+{% block content %}
+  <div class="card" style="margin-bottom: 24px;">
+    <h1>Расписание тренировок</h1>
+    <p>Расписание обновляется каждый час из Google Calendar.</p>
+    {% if user.is_authenticated %}
+      <form method="post" action="/schedule/refresh/" style="margin-bottom: 16px;">
+        {% csrf_token %}
+        <button class="button secondary" type="submit">Обновить расписание</button>
+      </form>
+    {% endif %}
+    <form method="post" action="/join/">
+      {% csrf_token %}
+      {% if next_event %}
+        <input type="hidden" name="event_id" value="{{ next_event.id }}" />
+        <p>
+          Ближайшая тренировка:
+          <strong>{{ next_event.start|date:"d.m.Y" }}</strong>
+          {% if next_event.title %} — {{ next_event.title }}{% endif %}
+        </p>
+        {% if next_event_times_str %}
+          <p>{{ next_event_times_str }}</p>
+        {% endif %}
+      {% else %}
+        <p>Пока нет ближайших тренировок.</p>
+      {% endif %}
+      {% if user.is_authenticated %}
+        <button class="button" type="submit">Подключиться</button>
+      {% else %}
+        <a class="button" href="/accounts/login/">Войти, чтобы подключиться</a>
+      {% endif %}
+    </form>
+  </div>
+
+  <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+    {% for item in events %}
+      <div class="card">
+        <h2>{{ item.event.title|default:"Тренировка" }}</h2>
+        <p><strong>{{ item.event.start|date:"d.m.Y" }}</strong></p>
+        {% if item.duration_minutes %}
+          <p>Длительность {{ item.duration_minutes }} минут</p>
+        {% elif item.event.end %}
+          <p>До {{ item.event.end|date:"H:i" }}</p>
+        {% endif %}
+        {% if item.event.location %}
+          <p>{{ item.event.location }}</p>
+        {% endif %}
+        {% if item.description %}
+          <p>{{ item.description|truncatechars:160 }}</p>
+        {% endif %}
+      </div>
+    {% empty %}
+      <div class="card">
+        <p>Расписание пока пустое.</p>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

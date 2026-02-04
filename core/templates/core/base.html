@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}SYSTOLA{% endblock %}</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Playfair+Display:wght@500;700&display=swap");
+
+      :root {
+        --ink: #1f1f1f;
+        --white: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Nunito", "Segoe UI", sans-serif;
+        color: var(--ink);
+        background: #ffffff;
+        font-size: 18px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Playfair Display", "Times New Roman", serif;
+        margin-top: 0;
+      }
+
+      .bg-layer {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .bg-photo {
+        position: absolute;
+        width: clamp(240px, 30vw, 380px);
+        opacity: 0.16;
+        filter: saturate(0.9) contrast(0.95);
+        border-radius: 28px;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06);
+        transition: transform 1s ease;
+      }
+
+      .bg-photo.wide {
+        width: clamp(280px, 34vw, 440px);
+      }
+
+      .bg-photo.p1 {
+        top: -8%;
+        left: -4%;
+      }
+
+      .bg-photo.p2 {
+        top: -2%;
+        left: 32%;
+      }
+
+      .bg-photo.p3 {
+        top: 2%;
+        left: 70%;
+      }
+
+      .bg-photo.p4 {
+        top: 54%;
+        left: 6%;
+      }
+
+      .bg-photo.p5 {
+        top: 58%;
+        left: 42%;
+      }
+
+      .bg-photo.p6 {
+        top: 62%;
+        left: 78%;
+      }
+
+      header {
+        padding: 24px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(6px);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .logo {
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      nav a {
+        margin-left: 16px;
+        text-decoration: none;
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      main {
+        padding: 48px 32px 72px;
+        max-width: 1100px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 12px 20px;
+        background: #2b6cb0;
+        color: var(--white);
+        text-decoration: none;
+        border-radius: 999px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+      }
+
+      .button.secondary {
+        background: #7b1b2f;
+      }
+
+      .grid {
+        display: grid;
+        gap: 24px;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.88);
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      footer {
+        text-align: center;
+        padding: 24px;
+        color: #6a6258;
+        position: relative;
+        z-index: 1;
+      }
+
+      @media (max-width: 720px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-layer" aria-hidden="true">
+      <img class="bg-photo wide p1" data-float="0.06" src="{% static 'yoga1.jpg' %}" alt="" />
+      <img class="bg-photo wide p2" data-float="0.04" src="{% static 'yoga2.JPG' %}" alt="" />
+      <img class="bg-photo p3" data-float="0.08" src="{% static 'yoga3.JPEG' %}" alt="" />
+      <img class="bg-photo p4" data-float="0.05" src="{% static 'yoga4.JPG' %}" alt="" />
+      <img class="bg-photo p5" data-float="0.07" src="{% static 'yoga5.jpg' %}" alt="" />
+      <img class="bg-photo wide p6" data-float="0.06" src="{% static 'yoga6.JPG' %}" alt="" />
+    </div>
+    <header>
+      <div class="logo">SYSTOLA • Йога-сообщество</div>
+      <nav>
+        <a href="/">Приветствие</a>
+        <a href="/schedule/">Расписание</a>
+        <a href="/dashboard/">Личный кабинет</a>
+        {% if user.is_staff %}
+          <a href="/analytics/">Аналитика</a>
+        {% endif %}
+        {% if user.is_authenticated %}
+          <a href="/accounts/logout/">Выйти</a>
+        {% else %}
+          <a href="/accounts/login/">Войти</a>
+        {% endif %}
+      </nav>
+    </header>
+    <main>{% block content %}{% endblock %}</main>
+    <footer>Дышим вместе. Движемся вместе.</footer>
+    <script>
+      const bgPhotos = document.querySelectorAll(".bg-photo");
+      const onScroll = () => {
+        const scrolled = window.scrollY;
+        bgPhotos.forEach((photo) => {
+          const speed = Number(photo.dataset.float || 0.05);
+          photo.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+      };
+      window.addEventListener("scroll", onScroll);
+      onScroll();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+{% extends "core/base.html" %}
+
+{% block title %}SYSTOLA • Личный кабинет{% endblock %}
+
+{% block content %}
+  <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+    <div class="card">
+      <h1>Личный кабинет</h1>
+      <p>Привет, {{ user.get_full_name|default:user.email }}!</p>
+      <p>Количество пройденных тренировок:</p>
+      <h2>{{ profile.trainings_completed }}</h2>
+    </div>
+    <div class="card">
+      <h2>Следующая тренировка</h2>
+      <p>Посмотрите расписание и присоединяйтесь.</p>
+      <a class="button secondary" href="/schedule/">Открыть расписание</a>
+    </div>
+  </div>
+{% endblock %}
