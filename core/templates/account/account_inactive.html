@@ -1,0 +1,27 @@
+{% extends "account/base.html" %}
+
+{% block title %}SYSTOLA • Аккаунт неактивен{% endblock %}
+
+{% block inner %}
+  <h1>Аккаунт неактивен</h1>
+  <p>
+    Сейчас доступ ограничен. Если ваш email уже добавлен в список разрешённых,
+    нажмите кнопку ниже.
+  </p>
+  <form method="post" action="/pending/check/" class="auth-form">
+    {% csrf_token %}
+    <button class="button" type="submit">Проверить доступ</button>
+  </form>
+  <div style="height: 12px;"></div>
+  <a class="button" href="/pending/">Перейти на страницу ожидания</a>
+  <style>
+    .auth-form {
+      margin: 0;
+    }
+
+    .button {
+      width: 220px;
+      text-align: center;
+    }
+  </style>
+{% endblock %}

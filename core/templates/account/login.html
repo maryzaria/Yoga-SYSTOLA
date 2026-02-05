@@ -9,12 +9,28 @@
     <a href="https://t.me/YogaSystola_Bot" target="_blank" rel="noreferrer">YogaSystola_Bot</a>.
   </p>
   <div style="height: 16px;"></div>
-  <div style="display: grid; gap: 12px;">
-    <a class="button secondary" href="/accounts/login/email/">Войти</a>
-    <a class="button secondary" href="/accounts/signup/">Зарегистрироваться</a>
-    <form method="post" action="/accounts/google/login/">
+  <div class="auth-buttons">
+    <a class="button" href="/accounts/login/email/">Войти</a>
+    <a class="button" href="/accounts/signup/">Зарегистрироваться</a>
+    <form method="post" action="/accounts/google/login/" class="auth-form">
       {% csrf_token %}
       <button class="button" type="submit">Войти через Google</button>
     </form>
   </div>
+  <style>
+    .auth-buttons {
+      display: grid;
+      gap: 12px;
+      justify-items: start;
+    }
+
+    .auth-buttons .button {
+      width: 220px;
+      text-align: center;
+    }
+
+    .auth-form {
+      margin: 0;
+    }
+  </style>
 {% endblock %}
