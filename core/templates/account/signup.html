@@ -6,6 +6,11 @@
 {% block inner %}
   <h1>Регистрация</h1>
   <p>Создайте аккаунт, используя любую почту.</p>
+  {% if form.non_field_errors %}
+    <div class="card" style="background: #ffe8e8; color: #7a1c1c; padding: 12px; margin-bottom: 12px;">
+      {{ form.non_field_errors }}
+    </div>
+  {% endif %}
   <form method="post" action="/accounts/signup/">
     {% csrf_token %}
     {{ form.as_p }}

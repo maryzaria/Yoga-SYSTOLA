@@ -177,6 +177,8 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 
+ACCOUNT_FORMS = {"signup": "core.forms.SystolaSignupForm"}
+
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -196,6 +198,8 @@ ODOO_DB = os.getenv("ODOO_DB", "yoga-systola1")
 ODOO_LOGIN = os.getenv("ODOO_LOGIN", "yoga.systola@gmail.com")
 ODOO_API_KEY = os.getenv("ODOO_API_KEY", "")
 DJANGO_ADMIN_PASSWORD = os.getenv("DJANGO_ADMIN_PASSWORD", "")
+DJANGO_ADMIN_USERNAME = os.getenv("DJANGO_ADMIN_USERNAME", "admin")
+DJANGO_ADMIN_EMAIL = os.getenv("DJANGO_ADMIN_EMAIL", "admin@example.com")
 
 CSRF_TRUSTED_ORIGINS = [
     origin.strip()

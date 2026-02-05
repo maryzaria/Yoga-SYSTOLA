@@ -31,7 +31,10 @@ def dashboard(request):
 
 
 def pending(request):
-    return render(request, "core/pending.html")
+    allowed = None
+    if request.user.is_authenticated:
+        allowed = is_email_allowed(request.user.email)
+    return render(request, "core/pending.html", {"allowed": allowed})
 
 
 @login_required

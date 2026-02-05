@@ -17,6 +17,9 @@
     </a>
     <p style="margin-top: 16px; font-size: 14px; color: #6a6258;">
       Текущий email: {{ user.email }}
+      {% if allowed is not None %}
+        — {% if allowed %}разрешён{% else %}не найден в списке{% endif %}
+      {% endif %}
     </p>
     <form method="post" action="/pending/check/" style="margin-top: 16px;">
       {% csrf_token %}

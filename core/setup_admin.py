@@ -7,10 +7,17 @@ def ensure_admin_password():
     if not password:
         return
 
+    username = getattr(settings, "DJANGO_ADMIN_USERNAME", "admin")
+    email = getattr(settings, "DJANGO_ADMIN_EMAIL", "admin@example.com")
+
     User = get_user_model()
-    try:
-        user = User.objects.get(username="admin")
-    except User.DoesNotExist:
+    user, created = User.objects.get_or_create(
+        username=username, defaults={"email": email, "is_staff": True, "is_superuser": True}
+    )
+
+    if created:
+        user.set_password(password)
+        user.save(update_fields=["password"])
         return
 
     if not user.check_password(password):
