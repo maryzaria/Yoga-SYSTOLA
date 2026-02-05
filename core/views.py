@@ -14,6 +14,8 @@ from django.db.models.functions import ExtractHour
 from .models import JoinClick, TrainingEvent
 from .odoo import create_lead
 from .teachers_data import TEACHERS
+from .odoo_allowlist import is_email_allowed
+from django.core.cache import cache
 
 
 def home(request):
@@ -22,8 +24,28 @@ def home(request):
 
 @login_required
 def dashboard(request):
+    if not request.user.is_active:
+        return redirect("/pending/")
     profile = request.user.profile
     return render(request, "core/dashboard.html", {"profile": profile})
+
+
+def pending(request):
+    return render(request, "core/pending.html")
+
+
+@login_required
+def pending_check(request):
+    if request.method != "POST":
+        return redirect("/pending/")
+
+    allowed = is_email_allowed(request.user.email)
+    cache.set(f"allowlist:{request.user.email}", allowed, 600)
+    if allowed:
+        request.user.is_active = True
+        request.user.save(update_fields=["is_active"])
+        return redirect("/dashboard/")
+    return redirect("/pending/")
 
 
 def schedule(request):

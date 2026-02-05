@@ -1,0 +1,14 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+
+{% block title %}SYSTOLA • Регистрация{% endblock %}
+
+{% block inner %}
+  <h1>Регистрация</h1>
+  <p>Создайте аккаунт, используя любую почту.</p>
+  <form method="post" action="/accounts/signup/">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="button" type="submit">Зарегистрироваться</button>
+  </form>
+{% endblock %}

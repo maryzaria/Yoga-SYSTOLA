@@ -66,6 +66,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    "core.middleware.AllowlistMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -174,6 +175,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
@@ -204,3 +206,4 @@ CSRF_TRUSTED_ORIGINS = [
 SITE_DOMAIN = os.getenv("SITE_DOMAIN", "127.0.0.1")
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "")
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET", "")
+ODOO_ALLOW_TAG = os.getenv("ODOO_ALLOW_TAG", "SYSTOLA_ALLOWED")

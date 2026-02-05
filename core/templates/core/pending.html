@@ -1,0 +1,23 @@
+{% extends "core/base.html" %}
+
+{% block title %}SYSTOLA • Доступ по приглашению{% endblock %}
+
+{% block content %}
+  <div class="card" style="max-width: 640px; margin: 0 auto;">
+    <h1>Доступ по приглашению</h1>
+    <p>
+      Мы допускаем к занятиям только участников, прошедших собеседование.
+      Если вы уже прошли, дождитесь подтверждения — доступ появится автоматически.
+    </p>
+    <p>
+      Если собеседование ещё не пройдено, напишите нашему Telegram-боту:
+    </p>
+    <a class="button" href="https://t.me/YogaSystola_Bot" target="_blank" rel="noreferrer">
+      Открыть Telegram-бот
+    </a>
+    <form method="post" action="/pending/check/" style="margin-top: 16px;">
+      {% csrf_token %}
+      <button class="button secondary" type="submit">Проверить доступ</button>
+    </form>
+  </div>
+{% endblock %}

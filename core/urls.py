@@ -10,4 +10,6 @@ urlpatterns = [
     path("schedule/refresh/", views.refresh_schedule, name="refresh_schedule"),
     path("analytics/", views.analytics, name="analytics"),
     path("teachers/", views.teachers, name="teachers"),
+    path("pending/", views.pending, name="pending"),
+    path("pending/check/", views.pending_check, name="pending_check"),
 ]

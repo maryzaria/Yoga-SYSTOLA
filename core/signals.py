@@ -5,6 +5,7 @@ from allauth.account.signals import user_signed_up
 
 from .models import Profile
 from .odoo import create_lead
+from .odoo_allowlist import is_email_allowed
 
 
 @receiver(post_save, sender=get_user_model())
@@ -20,3 +21,7 @@ def send_signup_to_odoo(request, user, **kwargs):
         email=user.email,
         description="New user signup",
     )
+
+    if not is_email_allowed(user.email):
+        user.is_active = False
+        user.save(update_fields=["is_active"])
