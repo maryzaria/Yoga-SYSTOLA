@@ -2,6 +2,7 @@ from django.core.cache import cache
 from django.shortcuts import redirect
 
 from .odoo_allowlist import is_email_allowed
+from .user_utils import get_user_email
 
 
 class AllowlistMiddleware:
@@ -18,10 +19,18 @@ class AllowlistMiddleware:
             if path.startswith("/admin/") or path.startswith("/static/"):
                 return self.get_response(request)
 
-            cache_key = f"allowlist:{user.email}"
+            email = get_user_email(user)
+            if email and user.email != email:
+                user.email = email
+                user.save(update_fields=["email"])
+
+            if not email:
+                return redirect("/pending/")
+
+            cache_key = f"allowlist:{email}"
             cached = cache.get(cache_key)
             if cached is None:
-                cached = is_email_allowed(user.email)
+                cached = is_email_allowed(email)
                 cache.set(cache_key, cached, 600)
 
             if cached:

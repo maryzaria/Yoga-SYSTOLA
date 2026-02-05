@@ -15,6 +15,7 @@ from .models import JoinClick, TrainingEvent
 from .odoo import create_lead
 from .teachers_data import TEACHERS
 from .odoo_allowlist import allowlist_debug, is_email_allowed
+from .user_utils import get_user_email
 from django.core.cache import cache
 
 
@@ -34,8 +35,13 @@ def pending(request):
     allowed = None
     debug_info = None
     if request.user.is_authenticated:
-        allowed = is_email_allowed(request.user.email)
-        debug_info = allowlist_debug(request.user.email)
+        email = get_user_email(request.user)
+        if email and request.user.email != email:
+            request.user.email = email
+            request.user.save(update_fields=["email"])
+        if email:
+            allowed = is_email_allowed(email)
+            debug_info = allowlist_debug(email)
     return render(
         request,
         "core/pending.html",
@@ -48,8 +54,14 @@ def pending_check(request):
     if request.method != "POST":
         return redirect("/pending/")
 
-    allowed = is_email_allowed(request.user.email)
-    cache.set(f"allowlist:{request.user.email}", allowed, 600)
+    email = get_user_email(request.user)
+    if not email:
+        return redirect("/pending/")
+    if request.user.email != email:
+        request.user.email = email
+        request.user.save(update_fields=["email"])
+    allowed = is_email_allowed(email)
+    cache.set(f"allowlist:{email}", allowed, 600)
     if allowed:
         request.user.is_active = True
         request.user.save(update_fields=["is_active"])
