@@ -182,6 +182,7 @@ ACCOUNT_FORMS = {"signup": "core.forms.SystolaSignupForm"}
 SOCIALACCOUNT_LOGIN_ON_GET = True
 SOCIALACCOUNT_QUERY_EMAIL = True
 SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_ADAPTER = "core.adapters.SystolaSocialAccountAdapter"
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {

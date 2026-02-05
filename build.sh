@@ -7,3 +7,4 @@ python manage.py migrate
 python manage.py create_admin
 python manage.py bootstrap_render
 python manage.py sync_calendar
+python manage.py reactivate_allowed_users
