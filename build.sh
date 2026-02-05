@@ -4,5 +4,6 @@ set -o errexit
 python -m pip install -r requirements.txt
 python manage.py collectstatic --noinput
 python manage.py migrate
+python manage.py create_admin
 python manage.py bootstrap_render
 python manage.py sync_calendar
