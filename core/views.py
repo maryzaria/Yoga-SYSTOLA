@@ -65,7 +65,6 @@ def pending_check(request):
     if allowed:
         request.user.is_active = True
         request.user.save(update_fields=["is_active"])
-        return redirect("/dashboard/")
     return redirect("/pending/")
 
 
