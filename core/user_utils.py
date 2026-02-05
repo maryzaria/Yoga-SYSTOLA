@@ -12,4 +12,17 @@ def get_user_email(user):
         if email:
             return email
 
+        if isinstance(social.extra_data.get("emails"), list):
+            for item in social.extra_data["emails"]:
+                value = (item or "").strip()
+                if value:
+                    return value
+
+        if isinstance(social.extra_data.get("emailAddresses"), list):
+            for item in social.extra_data["emailAddresses"]:
+                if isinstance(item, dict):
+                    value = (item.get("value") or "").strip()
+                    if value:
+                        return value
+
     return ""
