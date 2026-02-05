@@ -11,7 +11,7 @@ from django.contrib.auth import get_user_model
 from django.db.models import Count, Sum
 from django.db.models.functions import ExtractHour
 
-from .models import JoinClick, TrainingEvent
+from .models import JoinClick, TrainingEvent, Profile
 from .odoo import create_lead
 from .teachers_data import TEACHERS
 from .odoo_allowlist import allowlist_debug, is_email_allowed
@@ -28,7 +28,7 @@ def home(request):
 def dashboard(request):
     if not request.user.is_active:
         return redirect("/pending/")
-    profile = request.user.profile
+    profile, _ = Profile.objects.get_or_create(user=request.user)
     return render(request, "core/dashboard.html", {"profile": profile})
 
 
