@@ -2,8 +2,8 @@
 {% block title %}SYSTOLA • Вход{% endblock %}
 
 {% block inner %}
-  <h1>Вход в SYSTOLA</h1>
-  <p>Авторизация через Google займет пару секунд.</p>
+  <h1>Войти через Google</h1>
+  <p>Если окно не открылось, попробуйте ещё раз.</p>
   <form method="post" action="/accounts/google/login/">
     {% csrf_token %}
     <button class="button" type="submit">Войти через Google</button>

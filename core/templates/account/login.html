@@ -2,10 +2,46 @@
 {% block title %}SYSTOLA • Вход{% endblock %}
 
 {% block inner %}
-  <h1>Вход в SYSTOLA</h1>
-  <p>Авторизация через Google займет пару секунд.</p>
+  <h1>Войти или зарегистрироваться</h1>
+  <p>Выберите способ входа. Можно через Google или по email.</p>
   <form method="post" action="/accounts/google/login/">
     {% csrf_token %}
     <button class="button" type="submit">Войти через Google</button>
   </form>
+
+  <div style="height: 16px;"></div>
+
+  <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+    <form method="post" action="/accounts/login/" class="card" style="margin: 0;">
+      {% csrf_token %}
+      <h2>Вход по email</h2>
+      <p>
+        <label for="id_login">Email</label><br />
+        <input id="id_login" name="login" type="email" required />
+      </p>
+      <p>
+        <label for="id_password">Пароль</label><br />
+        <input id="id_password" name="password" type="password" required />
+      </p>
+      <button class="button secondary" type="submit">Войти</button>
+    </form>
+
+    <form method="post" action="/accounts/signup/" class="card" style="margin: 0;">
+      {% csrf_token %}
+      <h2>Регистрация</h2>
+      <p>
+        <label for="id_email">Email</label><br />
+        <input id="id_email" name="email" type="email" required />
+      </p>
+      <p>
+        <label for="id_password1">Пароль</label><br />
+        <input id="id_password1" name="password1" type="password" required />
+      </p>
+      <p>
+        <label for="id_password2">Повторите пароль</label><br />
+        <input id="id_password2" name="password2" type="password" required />
+      </p>
+      <button class="button secondary" type="submit">Зарегистрироваться</button>
+    </form>
+  </div>
 {% endblock %}
