@@ -12,4 +12,5 @@ urlpatterns = [
     path("teachers/", views.teachers, name="teachers"),
     path("pending/", views.pending, name="pending"),
     path("pending/check/", views.pending_check, name="pending_check"),
+    path("odoo-contacts/", views.odoo_contacts, name="odoo_contacts"),
 ]

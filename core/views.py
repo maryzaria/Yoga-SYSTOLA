@@ -16,6 +16,7 @@ from .odoo import create_lead
 from .teachers_data import TEACHERS
 from .odoo_allowlist import allowlist_debug, is_email_allowed
 from .user_utils import get_user_email
+from .odoo_contacts import fetch_contacts
 from django.core.cache import cache
 
 
@@ -135,6 +136,12 @@ def schedule(request):
 
 def teachers(request):
     return render(request, "core/teachers.html", {"teachers": TEACHERS})
+
+
+@user_passes_test(lambda u: u.is_staff)
+def odoo_contacts(request):
+    contacts = fetch_contacts()
+    return render(request, "core/odoo_contacts.html", {"contacts": contacts})
 
 
 @login_required
