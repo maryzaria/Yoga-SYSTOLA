@@ -1,0 +1,49 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}SYSTOLA • Преподаватели{% endblock %}
+
+{% block content %}
+  <section class="card" style="margin-bottom: 24px;">
+    <h1>Наши преподаватели</h1>
+    <p>
+      Каждый преподаватель ведет свою линию практики — от мягкой хатха-йоги до
+      динамичных flow-направлений и йогатерапии.
+    </p>
+  </section>
+
+  <section class="grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+    {% for teacher in teachers %}
+      <div class="card teacher-card">
+        <div class="teacher-photo">
+          <img src="{% static teacher.photo %}" alt="{{ teacher.name }}" />
+        </div>
+        <h2>{{ teacher.name }}</h2>
+        <p>{{ teacher.styles }}</p>
+      </div>
+    {% endfor %}
+  </section>
+
+  <style>
+    .teacher-card {
+      display: grid;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .teacher-photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #f4f4f4;
+    }
+
+    .teacher-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+{% endblock %}

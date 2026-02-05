@@ -13,6 +13,7 @@ from django.db.models.functions import ExtractHour
 
 from .models import JoinClick, TrainingEvent
 from .odoo import create_lead
+from .teachers_data import TEACHERS
 
 
 def home(request):
@@ -86,6 +87,10 @@ def schedule(request):
             "zoom_join_url": settings.ZOOM_JOIN_URL,
         },
     )
+
+
+def teachers(request):
+    return render(request, "core/teachers.html", {"teachers": TEACHERS})
 
 
 @login_required

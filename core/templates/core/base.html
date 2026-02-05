@@ -71,17 +71,12 @@
 
       .bg-photo.p4 {
         top: 54%;
-        left: 6%;
+        left: 22%;
       }
 
       .bg-photo.p5 {
-        top: 58%;
-        left: 42%;
-      }
-
-      .bg-photo.p6 {
-        top: 62%;
-        left: 78%;
+        top: 56%;
+        left: 50%;
       }
 
       header {
@@ -163,18 +158,18 @@
   </head>
   <body>
     <div class="bg-layer" aria-hidden="true">
-      <img class="bg-photo wide p1" data-float="0.06" src="{% static 'yoga1.jpg' %}" alt="" />
+      <img class="bg-photo wide p1" data-float="0.06" src="{% static 'yoga3.JPEG' %}" alt="" />
       <img class="bg-photo wide p2" data-float="0.04" src="{% static 'yoga2.JPG' %}" alt="" />
-      <img class="bg-photo p3" data-float="0.08" src="{% static 'yoga3.JPEG' %}" alt="" />
+      <img class="bg-photo p3" data-float="0.08" src="{% static 'yoga1.jpg' %}" alt="" />
       <img class="bg-photo p4" data-float="0.05" src="{% static 'yoga4.JPG' %}" alt="" />
       <img class="bg-photo p5" data-float="0.07" src="{% static 'yoga5.jpg' %}" alt="" />
-      <img class="bg-photo wide p6" data-float="0.06" src="{% static 'yoga6.JPG' %}" alt="" />
     </div>
     <header>
       <div class="logo">SYSTOLA • Йога-сообщество</div>
       <nav>
         <a href="/">Приветствие</a>
         <a href="/schedule/">Расписание</a>
+        <a href="/teachers/">Преподаватели</a>
         <a href="/dashboard/">Личный кабинет</a>
         {% if user.is_staff %}
           <a href="/analytics/">Аналитика</a>
