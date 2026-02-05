@@ -16,14 +16,18 @@
       Открыть Telegram-бот
     </a>
     <p style="margin-top: 16px; font-size: 14px; color: #6a6258;">
-      Текущий email:
-      {% if user.email %}
-        {{ user.email }}
+      {% if user.is_authenticated %}
+        Текущий email:
+        {% if user.email %}
+          {{ user.email }}
+        {% else %}
+          не указан
+        {% endif %}
+        {% if allowed is not None %}
+          — {% if allowed %}разрешён{% else %}не найден в списке{% endif %}
+        {% endif %}
       {% else %}
-        не указан
-      {% endif %}
-      {% if allowed is not None %}
-        — {% if allowed %}разрешён{% else %}не найден в списке{% endif %}
+        Вы не вошли в аккаунт. Пожалуйста, авторизуйтесь, чтобы проверить доступ.
       {% endif %}
     </p>
     {% if debug_info %}
