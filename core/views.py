@@ -49,9 +49,11 @@ def pending(request):
     )
 
 
-@login_required
 def pending_check(request):
     if request.method != "POST":
+        return redirect("/pending/")
+
+    if not request.user.is_authenticated:
         return redirect("/pending/")
 
     email = get_user_email(request.user)
