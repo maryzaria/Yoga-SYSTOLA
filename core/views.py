@@ -14,7 +14,7 @@ from django.db.models.functions import ExtractHour
 from .models import JoinClick, TrainingEvent
 from .odoo import create_lead
 from .teachers_data import TEACHERS
-from .odoo_allowlist import is_email_allowed
+from .odoo_allowlist import allowlist_debug, is_email_allowed
 from django.core.cache import cache
 
 
@@ -32,9 +32,15 @@ def dashboard(request):
 
 def pending(request):
     allowed = None
+    debug_info = None
     if request.user.is_authenticated:
         allowed = is_email_allowed(request.user.email)
-    return render(request, "core/pending.html", {"allowed": allowed})
+        debug_info = allowlist_debug(request.user.email)
+    return render(
+        request,
+        "core/pending.html",
+        {"allowed": allowed, "debug_info": debug_info},
+    )
 
 
 @login_required

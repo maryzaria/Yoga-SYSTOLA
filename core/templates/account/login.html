@@ -8,6 +8,7 @@
     Свяжитесь с нашим Telegram-ботом:
     <a href="https://t.me/YogaSystola_Bot" target="_blank" rel="noreferrer">YogaSystola_Bot</a>.
   </p>
+  <p>Если вы уже зарегистрированы — нажмите «Войти».</p>
   <div style="height: 16px;"></div>
   <div class="auth-buttons">
     <a class="button" href="/accounts/login/email/">Войти</a>
@@ -16,7 +17,7 @@
       {% csrf_token %}
       <button class="button" type="submit">Войти через Google</button>
     </form>
-    <a class="button" href="/accounts/password/reset/">Забыли пароль?</a>
+    <a class="button" href="/accounts/password/reset/">Восстановить пароль</a>
   </div>
   <style>
     .auth-buttons {
