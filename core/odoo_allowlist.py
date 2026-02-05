@@ -16,6 +16,7 @@ def is_email_allowed(email):
         uid = _authenticate()
         if not uid:
             return False
+        email = (email or "").strip().lower()
 
         tag_payload = {
             "jsonrpc": "2.0",
@@ -51,7 +52,7 @@ def is_email_allowed(email):
                     settings.ODOO_API_KEY,
                     "res.partner",
                     "search_count",
-                    [[[["email", "=", email], ["category_id", "in", tag_ids]]]],
+                    [[["email", "=", email], ["category_id", "in", tag_ids]]],
                 ],
             },
             "id": 2,

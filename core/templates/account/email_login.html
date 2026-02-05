@@ -1,0 +1,12 @@
+{% extends "account/base.html" %}
+
+{% block title %}SYSTOLA • Вход по email{% endblock %}
+
+{% block inner %}
+  <h1>Вход по email</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="button" type="submit">Войти</button>
+  </form>
+{% endblock %}

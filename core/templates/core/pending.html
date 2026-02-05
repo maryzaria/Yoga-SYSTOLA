@@ -15,6 +15,9 @@
     <a class="button" href="https://t.me/YogaSystola_Bot" target="_blank" rel="noreferrer">
       Открыть Telegram-бот
     </a>
+    <p style="margin-top: 16px; font-size: 14px; color: #6a6258;">
+      Текущий email: {{ user.email }}
+    </p>
     <form method="post" action="/pending/check/" style="margin-top: 16px;">
       {% csrf_token %}
       <button class="button secondary" type="submit">Проверить доступ</button>
