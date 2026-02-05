@@ -21,7 +21,3 @@ def send_signup_to_odoo(request, user, **kwargs):
         email=user.email,
         description="New user signup",
     )
-
-    if not is_email_allowed(user.email):
-        user.is_active = False
-        user.save(update_fields=["is_active"])

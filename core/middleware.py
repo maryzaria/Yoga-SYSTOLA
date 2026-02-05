@@ -33,14 +33,7 @@ class AllowlistMiddleware:
                 cached = is_email_allowed(email)
                 cache.set(cache_key, cached, 600)
 
-            if cached:
-                if not user.is_active:
-                    user.is_active = True
-                    user.save(update_fields=["is_active"])
-            else:
-                if user.is_active:
-                    user.is_active = False
-                    user.save(update_fields=["is_active"])
+            if not cached:
                 return redirect("/pending/")
 
         return self.get_response(request)
